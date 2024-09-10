@@ -1,0 +1,31 @@
+<table class="table  table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Date of Birth</th>
+        <th>Loan Type</th>
+        <th>Principal Amount</th>
+        <th>Rate</th>
+        <th>Time (Months)</th>
+        <th>Simple Interest</th>
+        <th>Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.dob }}</td>
+        <td>{{ user.loanType }}</td>
+        <td>{{ user.principal }}</td>
+        <td>{{ user.rate }}</td>
+        <td>{{ user.loanDetails.timeInMonths }}</td>
+        <td>{{ user.loanDetails.simpleInterest|number }}</td>
+        <td>{{ user.loanDetails.totalAmount|number }}</td>
+        <td>
+            <a [routerLink]="['/edit-loan', user.id]" class="btn btn-warning">Edit</a>
+          </td>
+      </tr>
+
+    </tbody>
+  </table>
+  

@@ -1,0 +1,41 @@
+
+
+   <div class="container">
+    <h2>Edit Loan Details</h2>
+    <form (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" class="form-control" [(ngModel)]="userLoan.fullName" name="fullName" required>
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="text" id="dob" class="form-control" [(ngModel)]="userLoan.dob" name="dob" required>
+      </div>
+      <div class="form-group">
+        <label for="loanType">Loan Type</label>
+        <input type="text" id="loanType" class="form-control" [(ngModel)]="userLoan.loanType" name="loanType" required>
+      </div>
+      <div class="form-group">
+        <label for="principal">Principal Amount</label>
+        <input type="number" id="principal" class="form-control" [(ngModel)]="userLoan.principal" name="principal" (ngModelChange)="updateCalculations()" required>
+      </div>
+      <div class="form-group">
+        <label for="rate">Rate</label>
+        <input type="number" id="rate" class="form-control" [(ngModel)]="userLoan.rate" name="rate" (ngModelChange)="updateCalculations()" required>
+      </div>
+      <div class="form-group">
+        <label for="timeInMonths">Time (Months)</label>
+        <input type="number" id="timeInMonths" class="form-control" [(ngModel)]="userLoan.loanDetails.timeInMonths" name="timeInMonths" (ngModelChange)="updateCalculations()" required>
+      </div>
+      <div class="form-group">
+        <label for="simpleInterest">Simple Interest</label>
+        <input type="number" id="simpleInterest" class="form-control" [(ngModel)]="userLoan.loanDetails.simpleInterest" name="simpleInterest" readonly>
+      </div>
+      <div class="form-group">
+        <label for="totalAmount">Total Amount</label>
+        <input type="number" id="totalAmount" class="form-control" [(ngModel)]="userLoan.loanDetails.totalAmount" name="totalAmount" readonly>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+  

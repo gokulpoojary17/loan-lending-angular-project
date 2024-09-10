@@ -1,0 +1,127 @@
+<div class="container mt-5">
+    <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+      <!-- Section 1: User Detail -->
+      <fieldset class="border p-3 mb-3">
+        <legend class="w-auto">User Detail</legend>
+  
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input id="fullName" formControlName="fullName" class="form-control" placeholder="Enter Your Name">
+          <div *ngIf="loanForm.get('fullName')?.invalid && loanForm.get('fullName')?.touched" class="text-danger">
+            <ng-container *ngIf="loanForm.get('fullName')?.errors?.['required']">
+              Full Name is required.
+            </ng-container>
+            <ng-container *ngIf="loanForm.get('fullName')?.errors?.['noSpaces']">
+              Full Name cannot contain spaces.
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input id="dob" formControlName="dob" class="form-control" placeholder="dd-mm-yyyy" />
+          <div *ngIf="loanForm.get('dob')?.invalid && loanForm.get('dob')?.touched" class="text-danger">
+            <ng-container *ngIf="loanForm.get('dob')?.errors?.['required']">
+              Date of Birth is required.
+            </ng-container>
+            <ng-container *ngIf="loanForm.get('dob')?.errors?.['invalidDateFormat']">
+              Date of Birth must be in dd-mm-yyyy format.
+            </ng-container>
+            <ng-container *ngIf="loanForm.get('dob')?.errors?.['invalidMonth']">
+              Month must be between 01 and 12.
+            </ng-container>
+            <ng-container *ngIf="loanForm.get('dob')?.errors?.['invalidDay']">
+              Day must be between 01 and 31.
+            </ng-container>
+            <ng-container *ngIf="loanForm.get('dob')?.errors?.['invalidyear']">
+year must be not in future         
+   </ng-container>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="comments">Comments:</label>
+          <textarea id="comments" formControlName="comments" class="form-control"></textarea>
+        </div>
+  
+        
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number:</label>
+          <input id="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="Enter your phone number" />
+          <div *ngIf="loanForm.get('phoneNumber')?.invalid && loanForm.get('phoneNumber')?.touched" class="text-danger">
+            <ng-container *ngIf="loanForm.get('phoneNumber')?.errors?.['required']">
+              Phone Number is required.
+            </ng-container>
+            <ng-container *ngIf="loanForm.get('phoneNumber')?.errors?.['invalidPhoneNumber']">
+              Enter a valid phone number.
+            </ng-container>
+          </div>
+        </div>
+        
+      </fieldset> 
+      
+  
+      <!-- Section 2: Loan Type -->
+      <fieldset class="border p-3 mb-3">
+        <legend class="w-auto">Loan Type</legend>
+  
+        <div class="form-group">
+          <label for="loanType">Loan Type:</label>
+          <select id="loanType" formControlName="loanType" class="form-control">
+            <option value="">Select loan type</option>
+            <option *ngFor="let type of loanTypes" [value]="type">{{ type }}</option>
+          </select>
+          <div *ngIf="loanForm.get('loanType')?.invalid && loanForm.get('loanType')?.touched" class="text-danger">
+            Loan Type is required.
+          </div>
+        </div>
+      </fieldset>
+  
+      <!-- Section 3: Loan Detail -->
+      <fieldset class="border p-3 mb-3">
+        <legend class="w-auto">Loan Detail</legend>
+  
+        <div class="form-group">
+          <label for="principal">Principal Amount (P):</label>
+          <input id="principal" formControlName="principal" type="number" class="form-control" />
+          <div *ngIf="loanForm.get('principal')?.invalid && loanForm.get('principal')?.touched" class="text-danger">
+            Principal Amount is required and must be a positive number.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="rate">Rate of Interest (R):</label>
+          <input id="rate" formControlName="rate" type="number" class="form-control" />
+          <div *ngIf="loanForm.get('rate')?.invalid && loanForm.get('rate')?.touched" class="text-danger">
+            Rate of Interest is required and must be a positive number.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="time">Time (Months) (T):</label>
+          <input id="time" formControlName="time" type="number" class="form-control" />
+          <div *ngIf="loanForm.get('time')?.invalid && loanForm.get('time')?.touched" class="text-danger">
+            Time in Months is required and must be a positive integer.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label>Simple Interest (SI):</label>
+          <input id="si" [value]="si" readonly class="form-control" />
+        </div>
+  
+        <div class="form-group">
+          <label>Total Amount (A):</label>
+          <input id="totalAmount" [value]="totalAmount" readonly class="form-control" />
+        </div>
+      </fieldset>
+  
+      <!-- Form Buttons -->
+      <div class="form-group">
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)=" calculateInterest()">CalculateInterest</button>
+        <button [disabled]="loanForm.invalid" type="submit" class="btn btn-success">Save</button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,25 @@
+
+   <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12 mb-4" *ngFor="let user of users; let i = index">
+        <div class="card mb-4 shadow-sm rounded" style="padding: 10px;">
+          <div class="card-body">
+            <h6 class="card-title">{{ user.fullName }}</h6>
+            <p class="card-text"><strong>Date of Birth:</strong> {{ user.dob }}</p>
+            <p class="card-text"><strong>Loan Type:</strong> {{ user.loanType }}</p>
+            <p class="card-text"><strong>Principal Amount:</strong> {{ user.principal }}</p>
+            <p class="card-text"><strong>Rate:</strong> {{ user.rate }}</p>
+            <p class="card-text"><strong>Time (Months):</strong> {{ user.timeInMonths }}</p>
+            <p class="card-text"><strong>Simple Interest:</strong> {{ user.simpleInterest }}</p>
+            <p class="card-text"><strong>Total Amount:</strong> {{ user.totalAmount }}</p>
+            <div class="d-flex justify-content-between">
+              <button type="button" class="btn btn-secondary btn-sm" (click)="goBack()">Back</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteLoan(i)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
